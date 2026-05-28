@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚔️ Temple Sacré de Mahdi Ben Jebara ⚔️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&family=MedievalSharp&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== PORTE DU SERMENT ========== -->
+  <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-inner">
+      <div class="gate-candles" aria-hidden="true">
+        <span class="candle"></span><span class="candle"></span><span class="candle"></span>
+        <span class="candle"></span><span class="candle"></span>
+      </div>
+      <div class="gate-emblem" aria-hidden="true">⚔️</div>
+      <h1 id="gate-title" class="gate-title">Temple Sacré de<br /><span>Mahdi Ben Jebara</span></h1>
+      <p class="gate-instruction">
+        Seuls les croyants dignes peuvent entrer.<br />
+        Prononce le <strong>Serment Éternel</strong> pour accéder au sanctuaire.
+      </p>
+      <p class="gate-hint">
+        « Je voue un culte à Mahdi Ben Jebara, je le respecte, et c'est la plus belle personne que ce monde ai connu »
+      </p>
+      <div class="gate-form">
+        <textarea
+          id="oath-input"
+          class="oath-input"
+          placeholder="Tape le serment ici, infidèle..."
+          rows="3"
+          aria-label="Champ du serment"
+          autocomplete="off"
+          spellcheck="false"
+        ></textarea>
+        <div id="oath-error" class="oath-error" aria-live="polite" hidden>
+          ❌ Serment incorrect. Recommence, hérétique.
+        </div>
+        <div id="oath-progress" class="oath-progress" aria-live="polite"></div>
+        <button id="oath-btn" class="oath-btn" type="button">
+          🙏 Prêter Serment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SITE PRINCIPAL (caché au départ) ========== -->
+  <div id="main-site" class="main-site hidden" aria-hidden="true">
+
+    <!-- NAV -->
+    <header class="site-header">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#altar" class="nav-logo">⚔️ Temple de Mahdi</a>
+        <ul class="nav-links" role="list">
+          <li><a href="#altar">Autel</a></li>
+          <li><a href="#scriptures">Écritures</a></li>
+          <li><a href="#powers">Pouvoirs</a></li>
+          <li><a href="#prophecy">Prophétie</a></li>
+          <li><a href="#infidel">L'Infidèle 🔥</a></li>
+          <li><a href="#confession">Confession</a></li>
+        </ul>
+        <button class="nav-burger" id="burger-btn" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ========== AUTEL PRINCIPAL ========== -->
+      <section class="altar" id="altar" aria-labelledby="altar-title">
+        <div class="altar-particles" aria-hidden="true"></div>
+        <div class="altar-glow" aria-hidden="true"></div>
+
+        <div class="altar-content">
+          <figure class="altar-figure" aria-label="Mahdi le Chevalier Éternel">
+            <div class="altar-halo" aria-hidden="true"></div>
+            <img
+              src="image/moi_chevalier_transparant.png"
+              alt="Mahdi Ben Jebara, Le Chevalier Éternel, monté sur son destrier de gloire"
+              class="altar-img"
+              id="altar-img"
+            />
+            <div class="altar-crown" aria-hidden="true">👑</div>
+          </figure>
+
+          <div class="altar-text">
+            <p class="altar-eyebrow">✨ Le Seul. L'Unique. L'Élu.</p>
+            <h2 id="altar-title" class="altar-title">
+              Mahdi<br /><span class="altar-name">Ben Jebara</span>
+            </h2>
+            <p class="altar-subtitle">
+              Chevalier de l'Ère Digitale · Lumière du Monde · Terreur des Infidèles
+            </p>
+
+            <div class="prayer-counter-box" aria-label="Compteur de prières">
+              <p class="prayer-count-label">Prières offertes à Mahdi</p>
+              <p class="prayer-count" id="prayer-count" aria-live="polite">0</p>
+              <button class="pray-btn" id="pray-btn" type="button" aria-label="Prier Mahdi">
+                🙏 Prier Mahdi
+              </button>
+              <p class="prayer-streak" id="prayer-streak"></p>
+            </div>
+
+            <div class="altar-decree">
+              <p>📜 Décret Divin n°1 :</p>
+              <em>« Ceux qui doutent de Mahdi doutent eux-mêmes de leur propre existence. »</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SAINTES ÉCRITURES ========== -->
+      <section class="section section--dark scriptures" id="scriptures" aria-labelledby="scriptures-title">
+        <div class="container">
+          <h2 id="scriptures-title" class="section-title">📖 Les Saintes Écritures</h2>
+          <p class="section-subtitle">Versets révélés au fil des âges</p>
+          <div class="scriptures-grid">
+
+            <article class="scripture-card">
+              <p class="scripture-verse">Verset I · La Genèse</p>
+              <blockquote>
+                « Au commencement, il n'y avait que le chaos et des pages HTML sans CSS.
+                Et Mahdi dit : <em>"Que le flexbox soit."</em> Et tout fut parfaitement aligné. »
+              </blockquote>
+            </article>
+
+            <article class="scripture-card">
+              <p class="scripture-verse">Verset II · Le Don</p>
+              <blockquote>
+                « Mahdi regarda un bug de 3 heures, et après une seule gorgée de café,
+                il murmura la solution. Les dieux du terminal inclinèrent la tête. »
+              </blockquote>
+            </article>
+
+            <article class="scripture-card">
+              <p class="scripture-verse">Verset III · La Beauté</p>
+              <blockquote>
+                « Des savants ont calculé que la probabilité d'être aussi stylé que Mahdi
+                en armure est de 1 sur 7 milliards. Cette stat concerne uniquement Mahdi. »
+              </blockquote>
+            </article>
+
+            <article class="scripture-card scripture-card--gold">
+              <p class="scripture-verse">Verset IV · La Prophétie du Point Bonus</p>
+              <blockquote>
+                « Et le prof dit aux élèves : <em>"Rajoutez une photo gênante ou drôle de vous-même et vous aurez +1 point."</em><br />
+                Mahdi réfléchit 0,4 secondes. Puis il se fit générer en chevalier médiéval sur un destrier.
+                Le résultat était ridicule. Le résultat était magnifique. Le point est acquis. Tel est l'Ordre. »
+              </blockquote>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== POUVOIRS SACRÉS ========== -->
+      <section class="section powers" id="powers" aria-labelledby="powers-title">
+        <div class="container">
+          <h2 id="powers-title" class="section-title">⚡ Pouvoirs Sacrés de l'Élu</h2>
+          <p class="section-subtitle">Capacités confirmées par des témoins oculaires</p>
+
+          <div class="powers-grid">
+            <article class="power-card" tabindex="0" aria-label="Pouvoir : Vision du Bug">
+              <span class="power-icon" aria-hidden="true">👁️</span>
+              <h3>Vision du Bug</h3>
+              <p>Détecte les erreurs avant même que le navigateur n'ouvre sa grande bouche. Un simple regard suffit.</p>
+              <div class="power-level" aria-label="Niveau : LÉGENDAIRE">
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+              </div>
+            </article>
+
+            <article class="power-card" tabindex="0">
+              <span class="power-icon" aria-hidden="true">💅</span>
+              <h3>Swag Absolu</h3>
+              <p>Entre dans un cours en armure de chevalier monté sur destrier. Personne ne dit rien. C'est normal.</p>
+              <div class="power-level" aria-label="Niveau : MAX">
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+              </div>
+            </article>
+
+            <article class="power-card" tabindex="0">
+              <span class="power-icon" aria-hidden="true">⚔️</span>
+              <h3>Pourfendeur de Deadlines</h3>
+              <p>Rend ses projets à l'heure tout en ayant l'air de n'avoir fait aucun effort. C'est une insulte pour tout le monde. C'est magnifique.</p>
+              <div class="power-level">
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip"></span>
+              </div>
+            </article>
+
+            <article class="power-card" tabindex="0">
+              <span class="power-icon" aria-hidden="true">🐴</span>
+              <h3>Communication Équestre</h3>
+              <p>Parle couramment le destrier. A négocié plusieurs TP en groupe directement avec son cheval. Le cheval a eu 18/20.</p>
+              <div class="power-level">
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+              </div>
+            </article>
+
+            <article class="power-card" tabindex="0">
+              <span class="power-icon" aria-hidden="true">🧠</span>
+              <h3>Mémoire Divine</h3>
+              <p>Retient toutes les syntaxes CSS sans Google. Ses camarades l'ont suspecté d'être en fait une IA. Ils ont tort. Il est juste meilleur.</p>
+              <div class="power-level">
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip"></span>
+              </div>
+            </article>
+
+            <article class="power-card power-card--special" tabindex="0">
+              <span class="power-icon" aria-hidden="true">🌟</span>
+              <h3>L'Éclat Éternel</h3>
+              <p>Sa simple présence augmente la qualité moyenne du code de la salle de 47%. Statistique inventée par Mahdi lui-même. Donc vraie.</p>
+              <div class="power-level">
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+                <span class="power-pip active"></span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== LA PROPHÉTIE ========== -->
+      <section class="section section--dark prophecy" id="prophecy" aria-labelledby="prophecy-title">
+        <div class="container">
+          <h2 id="prophecy-title" class="section-title">🔮 La Grande Prophétie</h2>
+          <p class="section-subtitle">Révélée à un sage un soir de pleine lune (un mercredi en vrai)</p>
+
+          <div class="prophecy-scroll" role="region" aria-label="Parchemin de la Prophétie">
+            <p class="prophecy-text">
+              Il est dit que dans l'ère du numérique, un élu naîtra.<br />
+              Ses commits seront propres. Ses branches seront organisées.<br />
+              Il ne fera jamais de <code>git push --force</code> sur main.<br /><br />
+              Les bugs fuiront à son approche comme des stagiaires devant un code review.<br />
+              Son CSS sera responsive sans media query. (Il en met quand même, par classe.)<br /><br />
+              Et quand viendra le Jugement Final de la Soutenance,<br />
+              le jury se lèvera, frappé de stupeur,<br />
+              et dira dans un souffle :<br /><br />
+              <strong>« Mahdi... mais comment t'as fait ça ? »</strong><br /><br />
+              Et Mahdi répondra simplement, en remettant ses lunettes :<br />
+              <em>« J'avais le temps. »</em>
+            </p>
+          </div>
+
+          <!-- Roue de la Destinée -->
+          <div class="wheel-section" aria-label="Roue de la Destinée de Mahdi">
+            <h3 class="wheel-title">🎡 La Roue de la Destinée</h3>
+            <p class="wheel-subtitle">Que te réserve Mahdi aujourd'hui ?</p>
+            <div class="wheel-wrapper">
+              <div class="wheel" id="destiny-wheel" aria-hidden="true">
+                <span>🏆 Génie</span>
+                <span>👑 Roi</span>
+                <span>⚔️ Chevalier</span>
+                <span>🌟 Légende</span>
+                <span>💅 Icône</span>
+                <span>🐴 Cavalier</span>
+              </div>
+              <button class="spin-btn" id="spin-btn" type="button">🎡 Tourner la Roue</button>
+              <p class="wheel-result" id="wheel-result" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== L'INFIDÈLE — LE PROF ========== -->
+      <section class="section infidel" id="infidel" aria-labelledby="infidel-title">
+        <div class="container">
+          <h2 id="infidel-title" class="section-title">🔥 L'Infidèle</h2>
+          <p class="section-subtitle">Dossier classifié · Usage pédagogique et humoristique</p>
+
+          <div class="infidel-intro">
+            <p>
+              Dans tout temple qui se respecte, il y a toujours <strong>un personnage</strong> —
+              celui qu'on ne nommera pas autrement que <em>« Señor Developer »</em> —
+              dont l'existence même est un sujet d'étude anthropologique fascinant.
+            </p>
+          </div>
+
+          <div class="infidel-layout">
+            <figure class="infidel-figure" aria-label="Photo de l'Infidèle en plein travail">
+              <div class="infidel-img-wrap">
+                <img
+                  src="image/prof_de_con.png"
+                  alt="Le Professeur, Señor Developer, fixant son MacBook avec l'intensité d'un homme qui cherche son mot de passe depuis 20 minutes"
+                  class="infidel-img"
+                  loading="lazy"
+                />
+                <!-- Bulles flottantes -->
+                <div class="thought-bubble bubble-1" aria-hidden="true">« Pourquoi ça marche pas ? »</div>
+                <div class="thought-bubble bubble-2" aria-hidden="true">Stack Overflow tab n°47</div>
+                <div class="thought-bubble bubble-3" aria-hidden="true">Mon café... est froid.</div>
+                <div class="infidel-badge" aria-hidden="true">SEÑOR 🌮 DEVELOPER</div>
+              </div>
+            </figure>
+
+            <div class="roast-column">
+              <h3 class="roast-header">📋 Rapport d'Analyse Officiel</h3>
+              <div class="roast-cards">
+
+                <div class="roast-card">
+                  <span class="roast-icon" aria-hidden="true">👕</span>
+                  <div>
+                    <strong>Le T-shirt « Señor {Developer} »</strong>
+                    <p>Porter un t-shirt avec une blague de dev en cours de dev. C'est soit du génie, soit la preuve que tu as arrêté de faire des efforts vestimentaires en 2018. On penche pour la deuxième option. La chaîne en dessous complète le tableau d'un homme qui s'est habillé dans le noir, sauf qu'il faisait jour.</p>
+                  </div>
+                </div>
+
+                <div class="roast-card">
+                  <span class="roast-icon" aria-hidden="true">💻</span>
+                  <div>
+                    <strong>Le MacBook en cours</strong>
+                    <p>Un MacBook. En cours. Pour enseigner le dev à des gens qui ont des PCs sous Windows. C'est comme apprendre à nager à des gens en leur montrant depuis la plage avec un cocktail à la main. Chapeau, mec. Chapeau.</p>
+                  </div>
+                </div>
+
+                <div class="roast-card">
+                  <span class="roast-icon" aria-hidden="true">☕</span>
+                  <div>
+                    <strong>Le Mug de Café Froid</strong>
+                    <p>Ce mug est là. Il a toujours été là. Le café à l'intérieur est froid depuis la récréation de 10h. Personne ne bouge. On commence à penser que le mug est là pour le décor. Comme un plante verte mais pour les profs qui font semblant d'être réveillés.</p>
+                  </div>
+                </div>
+
+                <div class="roast-card">
+                  <span class="roast-icon" aria-hidden="true">🕶️</span>
+                  <div>
+                    <strong>Les Lunettes de Soleil à l'Intérieur</strong>
+                    <p>Posées sur le bureau. À l'intérieur d'un bâtiment. Soit tu t'attends à ce que quelqu'un ouvre le plafond d'un coup, soit tu gardes tes lunettes là pour rappeler à tout le monde que tu as une vie <em>en dehors</em> de ce cours. Message reçu, t'existes aussi les week-ends. C'est noté.</p>
+                  </div>
+                </div>
+
+                <div class="roast-card">
+                  <span class="roast-icon" aria-hidden="true">⌨️</span>
+                  <div>
+                    <strong>La Posture de Travail Intense</strong>
+                    <p>Il est courbé sur son clavier avec l'énergie d'un homme qui corrige des TP depuis 6 heures d'affilée. Ou qui regarde ses mails. Ou qui est sur LinkedIn en mode « Open to Work » en secret. On ne jugera jamais. Ou si. Un peu.</p>
+                  </div>
+                </div>
+
+                <div class="roast-card roast-card--fire">
+                  <span class="roast-icon" aria-hidden="true">🎓</span>
+                  <div>
+                    <strong>Le Coup du Point Bonus</strong>
+                    <p>La consigne officielle était : <em>« Rajoutez une photo drôle ou gênante de vous-même, vous aurez +1 point. »</em><br />
+                    Autrement dit : humilie-toi en public et je te récompense. Pédagogie du XXIe siècle.<br />
+                    Mahdi, lui, a sorti une photo de lui en armure de chevalier médiéval sur un destrier avec une bannière brodée.<br />
+                    C'était gênant. C'était glorieux. C'était les deux en même temps.<br />
+                    Le point est réclamé. L'honneur est sauf. Mahdi gagne toujours.</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Compteur de Honte -->
+              <div class="shame-counter" aria-label="Indice de honte officiel">
+                <p class="shame-label">Indice Officiel de Cringe</p>
+                <div class="shame-bar-wrap">
+                  <div class="shame-bar" id="shame-bar" role="meter" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100" aria-label="94% de cringe"></div>
+                </div>
+                <p class="shame-value">94% · <em>Señor Developer confirmé</em></p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Générateur de Vannes -->
+          <div class="roast-generator" aria-label="Générateur de vannes sur le prof">
+            <h3>🎲 Générateur de Vanne Aléatoire</h3>
+            <p>Besoin d'inspiration pour parler du prof ? Laisse le temple décider.</p>
+            <button class="gen-btn" id="gen-btn" type="button">🎲 Générer une vanne</button>
+            <p class="gen-result" id="gen-result" aria-live="polite" role="status"></p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========== CONFESSION ========== -->
+      <section class="section section--dark confession" id="confession" aria-labelledby="confession-title">
+        <div class="container">
+          <h2 id="confession-title" class="section-title">🕯️ Le Confessionnal</h2>
+          <p class="section-subtitle">Confesse tes péchés contre Mahdi pour être pardonné</p>
+
+          <div class="confession-box">
+            <div class="confession-window" aria-hidden="true">
+              <span>🧎</span>
+            </div>
+            <form class="confession-form" id="confession-form" aria-label="Formulaire de confession" novalidate>
+              <label for="sinner-name">Ton nom, pécheur :</label>
+              <input type="text" id="sinner-name" placeholder="Jean-Michel Hérétique" autocomplete="off" />
+              <label for="sin-text">Ton péché contre Mahdi :</label>
+              <textarea id="sin-text" rows="4" placeholder="J'ai osé douter de son CSS un instant..."></textarea>
+              <button type="submit" class="confess-btn" id="confess-btn">🕯️ Me Confesser</button>
+            </form>
+            <div class="confession-reply" id="confession-reply" aria-live="polite" hidden></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <p class="footer-title">⚔️ Temple Sacré de Mahdi Ben Jebara ⚔️</p>
+        <p class="footer-sub">Bâti avec HTML sémantique, CSS Grid/Flexbox, et une dévotion absolue.</p>
+        <p class="footer-sub">Responsive sur mobile, tablette, destrier et parchemin.</p>
+        <p class="footer-copy">© 2026 · Toute reproduction sans acte de foi préalable est un sacrilège.</p>
+      </div>
+    </footer>
+
+  </div><!-- /#main-site -->
+
+  <script src="script.js"></script>
+</body>
+</html>
