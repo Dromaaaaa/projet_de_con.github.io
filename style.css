@@ -1,0 +1,203 @@
+:root {
+  --gold: #c9973a; --gold-l: #f0c060; --gold-d: #8a6520;
+  --bg: #07070f; --card: #10101c; --border: #1c1c2e;
+  --accent: #7c6fff; --accent-l: #a89fff;
+  --red: #ff3d5a; --red-d: #991f34;
+  --text: #e8e8f0; --muted: #7777aa;
+  --r: 14px; --rs: 8px;
+  --sh: 0 8px 32px rgba(0,0,0,.6);
+  --t: .3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+code{font-family:monospace;background:rgba(124,111,255,.15);padding:2px 6px;border-radius:4px;color:var(--accent-l)}
+
+/* ---- GATE ---- */
+.gate{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at center,#110a20 0%,#05050d 100%);display:flex;align-items:center;justify-content:center;padding:1rem}
+.gate-inner{text-align:center;max-width:640px;width:100%;background:rgba(255,255,255,.03);border:1px solid var(--gold-d);border-radius:20px;padding:3rem 2.5rem;box-shadow:0 0 80px rgba(201,151,58,.15)}
+.gate-candles{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem}
+.candle{display:inline-block;width:10px;height:40px;background:linear-gradient(to top,#e8c060,#fff8dc);border-radius:3px;position:relative;animation:flicker 2s ease-in-out infinite}
+.candle::after{content:'🕯️';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:1.1rem}
+.candle:nth-child(2){animation-delay:.4s}.candle:nth-child(3){animation-delay:.8s}.candle:nth-child(4){animation-delay:1.2s}.candle:nth-child(5){animation-delay:1.6s}
+@keyframes flicker{0%,100%{opacity:1;transform:scaleX(1)}50%{opacity:.8;transform:scaleX(.95)}}
+.gate-emblem{font-size:3.5rem;margin-bottom:1rem;animation:pulse-glow 3s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{filter:drop-shadow(0 0 8px var(--gold))}50%{filter:drop-shadow(0 0 24px var(--gold-l))}}
+.gate-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;margin-bottom:1.2rem;line-height:1.3}
+.gate-title span{background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gate-instruction{color:var(--muted);font-size:.95rem;margin-bottom:1rem}
+.gate-hint{background:rgba(201,151,58,.08);border:1px solid var(--gold-d);border-radius:var(--rs);padding:.8rem 1.2rem;color:var(--gold-l);font-size:.85rem;font-style:italic;margin-bottom:1.5rem}
+.oath-input{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:var(--rs);padding:.9rem 1rem;color:var(--text);font-family:inherit;font-size:.95rem;resize:none;transition:var(--t);margin-bottom:.75rem}
+.oath-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,111,255,.2)}
+.oath-error{background:rgba(255,61,90,.1);border:1px solid var(--red);border-radius:var(--rs);padding:.6rem 1rem;color:var(--red);font-size:.85rem;margin-bottom:.75rem}
+.oath-progress{font-size:.78rem;color:var(--muted);margin-bottom:.6rem;min-height:1.2em}
+.oath-btn{width:100%;padding:1rem;background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l));color:#1a1000;font-weight:700;font-size:1rem;border:none;border-radius:var(--rs);cursor:pointer;transition:var(--t);font-family:inherit}
+.oath-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,58,.5)}
+
+/* ---- MAIN SITE ---- */
+.hidden{display:none!important}
+.main-site{opacity:0;transition:opacity 1s ease}
+.main-site.visible{opacity:1}
+
+/* ---- NAV ---- */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,7,15,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.9rem 5%;max-width:1300px;margin:0 auto}
+.nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:1.05rem;color:var(--gold-l);letter-spacing:.05em;transition:var(--t)}
+.nav-logo:hover{color:var(--gold)}
+.nav-links{display:flex;gap:1.8rem}
+.nav-links a{color:var(--muted);font-weight:500;font-size:.9rem;transition:var(--t);position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--gold);transition:var(--t)}
+.nav-links a:hover{color:var(--gold-l)}
+.nav-links a:hover::after{width:100%}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:var(--t)}
+
+/* ---- UTILS ---- */
+.container{width:90%;max-width:1200px;margin:0 auto}
+.section{padding:6rem 0}
+.section--dark{background:var(--card)}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.7rem,4vw,2.8rem);font-weight:900;background:linear-gradient(135deg,var(--gold-l),var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:.5rem}
+.section-subtitle{text-align:center;color:var(--muted);margin-bottom:3rem;font-size:1rem}
+
+/* ---- ALTAR ---- */
+.altar{min-height:100vh;padding-top:70px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 70% at 30% 50%,rgba(124,111,255,.1) 0%,transparent 70%),radial-gradient(ellipse 80% 60% at 80% 60%,rgba(201,151,58,.09) 0%,transparent 70%),var(--bg)}
+.altar-glow{position:absolute;top:40%;left:55%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,151,58,.12),transparent 70%);pointer-events:none;animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+.altar-particles{position:absolute;inset:0;pointer-events:none}
+.particle{position:absolute;border-radius:50%;background:var(--gold);opacity:.2;animation:pfloat linear infinite}
+@keyframes pfloat{0%{transform:translateY(0) scale(1);opacity:.15}50%{opacity:.45;transform:translateY(-28px) scale(1.4)}100%{transform:translateY(0) scale(1);opacity:.15}}
+.altar-content{display:flex;align-items:center;justify-content:space-between;gap:3rem;width:90%;max-width:1200px;margin:0 auto;position:relative;z-index:1;padding:2rem 0}
+.altar-figure{flex:0 0 auto;width:min(480px,46vw);position:relative;text-align:center}
+.altar-halo{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,58,.25),transparent 70%);animation:breathe 3s ease-in-out infinite;pointer-events:none}
+.altar-img{width:100%;filter:drop-shadow(0 20px 60px rgba(201,151,58,.3));animation:afloat 5s ease-in-out infinite;position:relative;z-index:1}
+@keyframes afloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.altar-crown{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:2.5rem;animation:crown-bob 2s ease-in-out infinite;z-index:2}
+@keyframes crown-bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+.altar-text{flex:1}
+.altar-eyebrow{font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.altar-title{font-family:'Cinzel Decorative',serif;font-size:clamp(2.2rem,5.5vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:.6rem}
+.altar-name{background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.altar-subtitle{color:var(--muted);font-size:1rem;margin-bottom:2rem}
+.prayer-counter-box{background:rgba(201,151,58,.07);border:1px solid var(--gold-d);border-radius:var(--r);padding:1.5rem 2rem;display:inline-block;text-align:center;margin-bottom:1.5rem}
+.prayer-count-label{font-size:.8rem;color:var(--muted);margin-bottom:.25rem;text-transform:uppercase;letter-spacing:.1em}
+.prayer-count{font-family:'Cinzel',serif;font-size:3rem;color:var(--gold-l);font-weight:900;line-height:1;margin-bottom:.75rem}
+.pray-btn{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#1a1000;border:none;border-radius:var(--rs);padding:.7rem 2rem;font-weight:700;font-size:.95rem;cursor:pointer;transition:var(--t);font-family:inherit;display:block;width:100%}
+.pray-btn:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(201,151,58,.5)}
+.pray-btn:active{transform:scale(.97)}
+.prayer-streak{margin-top:.5rem;font-size:.78rem;color:var(--gold);min-height:1.2em}
+.altar-decree{background:rgba(255,255,255,.03);border-left:3px solid var(--gold);padding:1rem 1.25rem;border-radius:0 var(--rs) var(--rs) 0;font-size:.9rem;color:var(--muted)}
+.altar-decree em{color:var(--gold-l)}
+
+/* ---- SCRIPTURES ---- */
+.scriptures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.scripture-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;transition:var(--t)}
+.scripture-card:hover{border-color:var(--gold-d);transform:translateY(-4px);box-shadow:var(--sh)}
+.scripture-card--gold{border-color:var(--gold-d);background:linear-gradient(135deg,rgba(201,151,58,.07),var(--bg))}
+.scripture-verse{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:.75rem}
+.scripture-card blockquote{color:var(--muted);font-size:.9rem;font-style:italic;line-height:1.8}
+.scripture-card blockquote em{color:var(--text)}
+
+/* ---- POWERS ---- */
+.powers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.power-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;display:flex;flex-direction:column;gap:.75rem;transition:var(--t);cursor:default}
+.power-card:hover,.power-card:focus{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 10px 40px rgba(124,111,255,.2);outline:none}
+.power-card--special{border-color:var(--gold-d);background:linear-gradient(135deg,rgba(201,151,58,.08),var(--card))}
+.power-card--special:hover{border-color:var(--gold);box-shadow:0 10px 40px rgba(201,151,58,.25)}
+.power-icon{font-size:2rem}
+.power-card h3{font-family:'Cinzel',serif;font-size:1rem;color:var(--text)}
+.power-card p{font-size:.88rem;color:var(--muted);flex:1}
+.power-level{display:flex;gap:.4rem;margin-top:.25rem}
+.power-pip{width:18px;height:6px;border-radius:999px;background:var(--border);transition:var(--t)}
+.power-pip.active{background:linear-gradient(90deg,var(--accent),var(--accent-l))}
+.power-card--special .power-pip.active{background:linear-gradient(90deg,var(--gold-d),var(--gold-l))}
+
+/* ---- PROPHECY ---- */
+.prophecy-scroll{max-width:720px;margin:0 auto 4rem;background:rgba(201,151,58,.05);border:1px solid var(--gold-d);border-radius:var(--r);padding:2.5rem;text-align:center}
+.prophecy-text{color:var(--muted);font-size:1rem;line-height:2;font-style:italic}
+.prophecy-text strong{color:var(--gold-l);font-style:normal}
+.prophecy-text em{color:var(--text)}
+.wheel-section{text-align:center}
+.wheel-title{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold-l);margin-bottom:.3rem}
+.wheel-subtitle{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
+.wheel-wrapper{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.wheel{width:200px;height:200px;border-radius:50%;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold-l);background:var(--card);transition:transform 1.5s cubic-bezier(.17,.67,.12,1);position:relative;overflow:hidden}
+.wheel span{position:absolute;width:100%;text-align:center;font-size:.78rem}
+.spin-btn{background:linear-gradient(135deg,var(--accent),var(--accent-l));color:#fff;border:none;border-radius:var(--rs);padding:.75rem 2rem;font-weight:700;cursor:pointer;transition:var(--t);font-family:inherit}
+.spin-btn:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(124,111,255,.5)}
+.wheel-result{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold-l);min-height:1.5em;font-weight:700}
+
+/* ---- INFIDEL ---- */
+.infidel-intro{max-width:700px;margin:0 auto 3rem;text-align:center;color:var(--muted);font-size:1rem;background:rgba(255,61,90,.05);border:1px solid rgba(255,61,90,.2);border-radius:var(--r);padding:1.25rem 1.75rem}
+.infidel-intro strong{color:var(--text)}
+.infidel-intro em{color:var(--red)}
+.infidel-layout{display:flex;gap:3rem;align-items:flex-start;margin-bottom:3rem}
+.infidel-figure{flex:0 0 auto;width:min(340px,40vw)}
+.infidel-img-wrap{position:relative}
+.infidel-img{width:100%;border-radius:var(--r);filter:drop-shadow(0 16px 48px rgba(0,0,0,.8));transition:var(--t)}
+.infidel-img:hover{transform:scale(1.02) rotate(-1deg)}
+.thought-bubble{position:absolute;background:rgba(10,10,20,.92);border:1px solid rgba(255,61,90,.4);border-radius:12px;padding:.5rem .8rem;font-size:.72rem;color:#ff8898;font-style:italic;backdrop-filter:blur(6px);max-width:160px;line-height:1.4}
+.bubble-1{top:8%;right:-30%;animation:wobble 3.5s ease-in-out infinite}
+.bubble-2{top:38%;right:-28%;animation:wobble 4s ease-in-out infinite .8s}
+.bubble-3{top:68%;right:-25%;animation:wobble 3s ease-in-out infinite 1.6s}
+@keyframes wobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.infidel-badge{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:var(--red-d);color:#fff;font-size:.7rem;font-weight:700;padding:.3rem .9rem;border-radius:999px;white-space:nowrap;letter-spacing:.05em}
+.roast-column{flex:1;min-width:0}
+.roast-header{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold-l);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.roast-cards{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+.roast-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.25rem;display:flex;gap:.9rem;transition:var(--t)}
+.roast-card:hover{border-color:rgba(255,61,90,.4);transform:translateX(4px)}
+.roast-card--fire{border-color:rgba(255,61,90,.3);background:linear-gradient(135deg,rgba(255,61,90,.06),var(--card))}
+.roast-card--fire:hover{border-color:var(--red)}
+.roast-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+.roast-card strong{display:block;color:var(--text);font-size:.88rem;margin-bottom:.3rem}
+.roast-card p{color:var(--muted);font-size:.82rem;line-height:1.65}
+.shame-counter{background:rgba(255,61,90,.06);border:1px solid rgba(255,61,90,.25);border-radius:var(--r);padding:1.25rem 1.5rem}
+.shame-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--red);margin-bottom:.6rem}
+.shame-bar-wrap{height:10px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin-bottom:.4rem}
+.shame-bar{height:100%;width:0;background:linear-gradient(90deg,var(--red-d),var(--red));border-radius:999px;transition:width 1.8s cubic-bezier(.4,0,.2,1)}
+.shame-value{font-size:.82rem;color:var(--muted)}
+.roast-generator{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;text-align:center;margin-top:2rem}
+.roast-generator h3{font-family:'Cinzel',serif;color:var(--gold-l);margin-bottom:.5rem}
+.roast-generator p{color:var(--muted);font-size:.9rem;margin-bottom:1.25rem}
+.gen-btn{background:linear-gradient(135deg,var(--red-d),var(--red));color:#fff;border:none;border-radius:var(--rs);padding:.7rem 1.8rem;font-weight:700;cursor:pointer;transition:var(--t);font-family:inherit}
+.gen-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(255,61,90,.4)}
+.gen-result{margin-top:1.25rem;color:var(--text);font-size:.95rem;font-style:italic;min-height:1.5em;padding:.75rem 1rem;background:rgba(255,255,255,.03);border-radius:var(--rs)}
+
+/* ---- CONFESSION ---- */
+.confession-box{max-width:600px;margin:0 auto;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:2.5rem;text-align:center}
+.confession-window{font-size:3rem;margin-bottom:1.5rem}
+.confession-form{display:flex;flex-direction:column;gap:.8rem;text-align:left}
+.confession-form label{font-size:.82rem;color:var(--muted);font-weight:500}
+.confession-form input,.confession-form textarea{background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:var(--rs);padding:.75rem 1rem;color:var(--text);font-family:inherit;font-size:.9rem;transition:var(--t);resize:none}
+.confession-form input:focus,.confession-form textarea:focus{outline:none;border-color:var(--gold-d);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
+.confess-btn{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#1a1000;border:none;border-radius:var(--rs);padding:.85rem;font-weight:700;cursor:pointer;transition:var(--t);font-family:inherit;margin-top:.25rem}
+.confess-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(201,151,58,.45)}
+.confession-reply{margin-top:1.5rem;background:rgba(201,151,58,.08);border:1px solid var(--gold-d);border-radius:var(--rs);padding:1rem 1.25rem;color:var(--gold-l);font-size:.9rem;text-align:center}
+
+/* ---- FOOTER ---- */
+.site-footer{background:#030308;border-top:1px solid var(--border);padding:3rem 0 2rem;text-align:center}
+.footer-title{font-family:'Cinzel',serif;color:var(--gold-l);font-size:1.1rem;margin-bottom:.5rem}
+.footer-sub{color:var(--muted);font-size:.82rem;margin-bottom:.2rem}
+.footer-copy{color:var(--border);font-size:.75rem;margin-top:1rem}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  .altar-content{flex-direction:column-reverse;text-align:center;padding:1.5rem 0}
+  .altar-figure{width:min(320px,75vw)}
+  .prayer-counter-box{display:block}
+  .infidel-layout{flex-direction:column;align-items:center}
+  .infidel-figure{width:min(300px,70vw)}
+  .bubble-1,.bubble-2,.bubble-3{display:none}
+}
+@media(max-width:600px){
+  .section{padding:4rem 0}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(7,7,15,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:1.5rem 5%;gap:1.25rem}
+  .nav-links--open{display:flex}
+  .nav-burger{display:flex}
+  .scriptures-grid,.powers-grid{grid-template-columns:1fr}
+  .altar-title{font-size:2rem}
+  .gate-inner{padding:2rem 1.25rem}
+}
